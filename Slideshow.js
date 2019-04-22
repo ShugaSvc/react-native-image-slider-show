@@ -12,7 +12,7 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
-
+import Lightbox from 'react-native-lightbox';
 const reactNativePackage = require('react-native/package.json');
 const splitVersion = reactNativePackage.version.split('.');
 const majorVersion = +splitVersion[0];
@@ -196,24 +196,40 @@ export default class Slideshow extends Component {
             const textComponent = (
                 <View style={styles.layoutText}>
             {image.title === undefined ? null : <Text style={this.props.titleStyle}>{image.title}</Text>}
-                {image.caption === undefined ? null : <Text style={this.props.captionStyle}>{image.caption}</Text>}
+            {image.caption === undefined ? null : <Text style={this.props.captionStyle}>{image.caption}</Text>}
                 </View>
-                );
+            );
             const imageComponent = (
                 <View key={index}>
-            <Image
+            <Lightbox swipeToDismiss={false}>
+            <ScrollView
+            minimumZoomScale={1}
+            maximumZoomScale={2}
+            centerContent={true}
+                >
+                <Image
             source={imageObject}
             style={{height, width}}
             />
+            </ScrollView>
+            </Lightbox>
             {textComponent}
         </View>
         );
             const imageComponentWithOverlay = (
                 <View key={index} style={styles.containerImage}>
-        <View style={styles.overlay}>
-        <Image
+            <View style={styles.overlay}>
+            <Lightbox swipeToDismiss={false}>
+            <ScrollView
+            minimumZoomScale={1}
+            maximumZoomScale={2}
+            centerContent={true}
+                >
+                <Image
             source={imageObject}
             style={{height, width}}/>
+        </ScrollView>
+        </Lightbox>
         </View>
             {textComponent}
         </View>
@@ -225,8 +241,8 @@ export default class Slideshow extends Component {
                 style={{height, width}}
                 onPress={() => this.props.onPress({image, index})}
                 delayPressIn={200}>
-                {this.props.overlay ? imageComponentWithOverlay : imageComponent}
-            </TouchableOpacity>
+                    {this.props.overlay ? imageComponentWithOverlay : imageComponent}
+                    </TouchableOpacity>
             );
             } else {
                 return this.props.overlay ? imageComponentWithOverlay : imageComponent
