@@ -10,7 +10,7 @@ import {
     PanResponder,
     TouchableHighlight,
     TouchableOpacity,
-    Dimensions,
+    Dimensions, Platform,
 } from 'react-native';
 import Lightbox from 'react-native-lightbox';
 const reactNativePackage = require('react-native/package.json');
@@ -202,17 +202,21 @@ export default class Slideshow extends Component {
             const imageComponent = (
                 <View key={index}>
             <Lightbox swipeToDismiss={false}>
+            {Platform.OS === 'ios' ?
             <ScrollView
             minimumZoomScale={1}
             maximumZoomScale={2}
-            centerContent={true}
-                >
+            centerContent={true}>
                 <Image
             source={imageObject}
-            style={{height, width}}
-            />
-            </ScrollView>
-            </Lightbox>
+            style={{height, width}}/>
+        </ScrollView>
+        :
+        <Image
+            source={imageObject}
+            style={{height, width}}/>
+        }
+        </Lightbox>
             {textComponent}
         </View>
         );
@@ -220,15 +224,20 @@ export default class Slideshow extends Component {
                 <View key={index} style={styles.containerImage}>
             <View style={styles.overlay}>
             <Lightbox swipeToDismiss={false}>
+            {Platform.OS === 'ios' ?
             <ScrollView
             minimumZoomScale={1}
             maximumZoomScale={2}
-            centerContent={true}
-                >
+            centerContent={true}>
                 <Image
             source={imageObject}
             style={{height, width}}/>
         </ScrollView>
+        :
+        <Image
+            source={imageObject}
+            style={{height, width}}/>
+        }
         </Lightbox>
         </View>
             {textComponent}
