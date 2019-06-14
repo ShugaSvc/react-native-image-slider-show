@@ -202,7 +202,7 @@ export default class Slideshow extends Component {
                         );
                         const imageComponent = (
                             <View key={index}>
-                                <Lightbox swipeToDismiss={false}>
+                                <Lightbox swipeToDismiss={false} onDoubleTap={this.props.onDoubleTap}>
                                     {Platform.OS === 'ios' ?
                                         <ScrollView
                                             minimumZoomScale={1}
@@ -228,7 +228,7 @@ export default class Slideshow extends Component {
                         const imageComponentWithOverlay = (
                             <View key={index} style={styles.containerImage}>
                                 <View style={styles.overlay}>
-                                    <Lightbox swipeToDismiss={false}>
+                                    <Lightbox swipeToDismiss={false} onDoubleTap={this.props.onDoubleTap}>
                                         {Platform.OS === 'ios' ?
                                             <ScrollView
                                                 minimumZoomScale={1}
@@ -349,6 +349,7 @@ Slideshow.defaultProps = {
     indicatorSelectedColor: '#FFFFFF',
     scrollEnabled: true,
     arrowSize: 16,
+    onDoubleTap: () => {},
 }
 
 Slideshow.propTypes = {
@@ -370,6 +371,7 @@ Slideshow.propTypes = {
     arrowRight: PropTypes.object,
     onPress: PropTypes.func,
     onPositionChanged: PropTypes.func,
+    onDoubleTap: PropTypes.func,
 };
 
 const setIndicatorSize = function (size) {
