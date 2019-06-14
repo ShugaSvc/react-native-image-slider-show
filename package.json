@@ -1,6 +1,6 @@
 {
   "name": "react-native-image-slider-show",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A quick and easy slideshow for react native.",
   "main": "Slideshow.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/kamalpandey/react-native-image-slider-show#readme",
   "dependencies": {
-    "react-native-lightbox": "^0.8.0"
+    "react-native-lightbox": "https://github.com/ShugaSvc/react-native-lightbox.git#0.8.1"
   }
 }
